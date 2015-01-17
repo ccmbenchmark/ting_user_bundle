@@ -1,0 +1,22 @@
+{
+  "name": "ccmbenchmark/ting-user-bundle",
+  "license": "Apache-2.0",
+  "type": "library",
+  "description": "Integration for friendsofsymfony/user-bundle with ccmbenchmark/ting",
+  "autoload": {
+    "psr-4" : {
+      "CCMBenchmark\\TingUserBundle\\": "src/TingUserBundle/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://satis.admin2.ccmbg.com/"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "friendsofsymfony/user-bundle": "dev-master",
+    "ccmbenchmark/ting": "~1.1"
+  }
+}
