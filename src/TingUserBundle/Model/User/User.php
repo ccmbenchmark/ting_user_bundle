@@ -4,7 +4,7 @@
  * TingUserBundle
  * ==========================================
  *
- * Copyright (C) 2014 CCM Benchmark Group. (http://www.ccmbenchmark.com)
+ * Copyright (C) 2015 CCM Benchmark Group. (http://www.ccmbenchmark.com)
  *
  ***********************************************************************
  *
@@ -22,12 +22,11 @@
  *
  **********************************************************************/
 
-namespace CCMBenchmark\TingUserBundle\Model;
+namespace CCMBenchmark\TingUserBundle\Model\User;
 
 
 use CCMBenchmark\Ting\Entity\NotifyProperty;
 use CCMBenchmark\Ting\Entity\NotifyPropertyInterface;
-use FOS\UserBundle\Model\GroupInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -56,10 +55,19 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
     public function removeRole($role)
     {
         $oldRoles = $this->roles;
-        $return = parent::removeRole($role);
+        parent::removeRole($role);
         $this->propertyChanged('roles', $oldRoles, $this->roles);
 
-        return $return;
+        return $this;
+    }
+
+    public function addRole($role)
+    {
+        $oldRoles = $this->roles;
+        parent::addRole($role);
+        $this->propertyChanged('roles', $oldRoles, $this->roles);
+
+        return $this;
     }
 
     public function setUsername($username)
@@ -157,10 +165,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
     public function setSuperAdmin($boolean)
     {
         $oldRoles = $this->roles;
-        $return = parent::setSuperAdmin($boolean);
+        parent::setSuperAdmin($boolean);
         $this->propertyChanged('roles', $oldRoles, $this->roles);
 
-        return $return;
+        return $this;
     }
 
     public function setLastLogin(\DateTime $time = null)
@@ -194,10 +202,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
     public function setRoles(array $roles)
     {
         $oldRoles = $this->roles;
-        $return = parent::setRoles($roles);
+        parent::setRoles($roles);
         $this->propertyChanged('roles', $oldRoles, $this->roles);
 
-        return $return;
+        return $this;
     }
 
     public function getEnabled()
