@@ -5,10 +5,15 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="ccmbenchmark_tinguserbundle.user_repository" class="AppBundle\User\UserRepository">
-            <factory service="ting" method="get"></factory>
-            <argument>AppBundle\User\UserRepository</argument>
+        <service id="ccmbenchmark_tinguserbundle.user_repository" class="%ting_user.user_repository%">
+            <factory service="ting" method="get" />
+            <argument>%ting_user.user_repository%</argument>
         </service>
+        <service id="ccmbenchmark_tinguserbundle.group_repository" class="%ting_user.group_repository%">
+            <factory service="ting" method="get" />
+            <argument>%ting_user.group_repository%</argument>
+        </service>
+
         <service id="ccmbenchmark_tinguserbundle.user_manager" class="CCMBenchmark\TingUserBundle\Manager\UserManager">
             <argument type="service" id="security.encoder_factory" />
             <argument type="service" id="fos_user.util.username_canonicalizer" />
@@ -16,7 +21,17 @@
             <call method="setUserRepository">
                 <argument type="service" id="ccmbenchmark_tinguserbundle.user_repository" />
             </call>
+            <call method="setUserClass">
+                <argument type="string">%ting_user.user_class%</argument>
+            </call>
         </service>
-        <service id="ccmbenchmark_tinguserbundle.group_manager" class="CCMBenchmark\DamBundle\Twig\TwigExtension"></service>
+        <service id="ccmbenchmark_tinguserbundle.group_manager" class="CCMBenchmark\TingUserBundle\Manager\GroupManager">
+            <call method="setGroupRepository">
+                <argument type="service" id="ccmbenchmark_tinguserbundle.group_repository" />
+            </call>
+            <call method="setGroupClass">
+                <argument type="string">%ting_user.group_class%</argument>
+            </call>
+        </service>
     </services>
 </container>
