@@ -29,7 +29,7 @@ use CCMBenchmark\Ting\Repository\Metadata;
 use CCMBenchmark\Ting\Repository\Repository;
 use CCMBenchmark\Ting\Serializer\SerializerFactoryInterface;
 
-abstract class GroupRepository extends Repository
+class GroupRepository extends Repository
 {
     /**
      * @var string the table name. Override this class to change the value.
@@ -76,6 +76,9 @@ abstract class GroupRepository extends Repository
         $metadata->setTable(static::$tableName);
 
         $metadata->setEntity(static::$entityClass);
+
+        $metadata->setConnectionName($options['connection']);
+        $metadata->setDatabase($options['database']);
 
         return $metadata;
     }

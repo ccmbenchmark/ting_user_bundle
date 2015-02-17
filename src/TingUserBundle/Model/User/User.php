@@ -208,6 +208,15 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return $this;
     }
 
+    public function setGroups(array $groups)
+    {
+        $oldGroups = $this->groups;
+        $this->groups = $groups;
+        $this->propertyChanged('groups', $oldGroups, $this->groups);
+
+        return $this;
+    }
+
     public function getEnabled()
     {
         return $this->enabled;

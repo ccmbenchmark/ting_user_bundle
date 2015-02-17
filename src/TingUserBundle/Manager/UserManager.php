@@ -25,7 +25,7 @@
 namespace CCMBenchmark\TingUserBundle\Manager;
 
 
-use CCMBenchmark\TingUserBundle\Model\User\UserRepository;
+use CCMBenchmark\TingUserBundle\Model\User\AbstractUserRepository;
 use FOS\UserBundle\Model\UserInterface;
 
 class UserManager extends \FOS\UserBundle\Model\UserManager
@@ -33,7 +33,7 @@ class UserManager extends \FOS\UserBundle\Model\UserManager
     protected $userRepository = null;
     protected $userClass = '';
 
-    public function setUserRepository(UserRepository $userRepository)
+    public function setUserRepository(AbstractUserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }
@@ -84,7 +84,7 @@ class UserManager extends \FOS\UserBundle\Model\UserManager
      */
     public function getClass()
     {
-        return 'AppBundle\User\User';
+        return $this->userClass;
     }
 
     /**

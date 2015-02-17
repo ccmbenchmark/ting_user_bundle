@@ -42,7 +42,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('class')->defaultValue('CCMBenchmark\TingUserBundle\Model\User\User')->end()
                         ->scalarNode('repository')
-                            ->defaultValue('CCMBenchmark\TingUserBundle\Model\User\UserRepository')
+                            ->defaultValue('CCMBenchmark\TingUserBundle\Model\User\MysqlUserRepository')
                         ->end()
                     ->end()
                 ->end()

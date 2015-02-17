@@ -30,7 +30,7 @@ use CCMBenchmark\Ting\Repository\Repository;
 use CCMBenchmark\Ting\Serializer\SerializerFactoryInterface;
 use CCMBenchmark\TingUserBundle\RuntimeException;
 
-abstract class UserRepository extends Repository
+abstract class AbstractUserRepository extends Repository
 {
     /**
      * @var string the table name. Override this class to change the value.
@@ -40,7 +40,7 @@ abstract class UserRepository extends Repository
     /**
      * @var string Your entity. Override this class to change the value.
      */
-    protected static $entityClass = 'AppBundle\User\User';
+    protected static $entityClass = 'CCMBenchmark\TingUserBundle\Model\User\User';
 
     /**
      * @var null : This value have to be defined in your own class. Valid values are :
@@ -61,7 +61,6 @@ abstract class UserRepository extends Repository
     public static function initMetadata(SerializerFactoryInterface $serializerFactory, array $options = [])
     {
         if (static::$booleanSerializer === null) {
-            debug_print_backtrace();
             throw new RuntimeException(
                 'The boolean serializer is null. Please extends this class and define it ' .
                 '(using the one from MySQL Driver or PgSQL Driver according to your database format).'
@@ -193,6 +192,9 @@ abstract class UserRepository extends Repository
         $metadata->setTable(static::$tableName);
 
         $metadata->setEntity(static::$entityClass);
+
+        $metadata->setConnectionName($options['connection']);
+        $metadata->setDatabase($options['database']);
 
         return $metadata;
     }
