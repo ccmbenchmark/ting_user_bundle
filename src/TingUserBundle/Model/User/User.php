@@ -353,8 +353,9 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
     {
         if ($user instanceof User) {
             // Check that the roles are the same, in any order
-            $isEqual = count($this->getRoles()) == count($user->getRoles());
-            if (count($this->getRoles()) == count($user->getRoles())) {
+            $isEqual = false;
+            if (count($this->getRoles()) === count($user->getRoles())) {
+                $isEqual = true;
                 foreach ($this->getRoles() as $role) {
                     if (in_array($role, $user->getRoles()) === false) {
                         return false;
