@@ -32,6 +32,10 @@ class Group extends \FOS\UserBundle\Model\Group implements NotifyPropertyInterfa
 {
     use NotifyProperty;
 
+    /**
+     * @param $id
+     * @return $this
+     */
     public function setId($id)
     {
         $this->propertyChanged('id', $this->id, $id);
@@ -41,10 +45,14 @@ class Group extends \FOS\UserBundle\Model\Group implements NotifyPropertyInterfa
         return $this;
     }
 
+    /**
+     * @param string $role
+     * @return $this
+     */
     public function addRole($role)
     {
         $oldRoles = $this->roles;
-        if (!$this->hasRole($role)) {
+        if ($this->hasRole($role) === false) {
             $this->roles[] = strtoupper($role);
         }
         $this->propertyChanged('roles', $oldRoles, $this->roles);
@@ -52,11 +60,16 @@ class Group extends \FOS\UserBundle\Model\Group implements NotifyPropertyInterfa
         return $this;
     }
 
+    /**
+     * @param string $role
+     * @return $this
+     */
     public function removeRole($role)
     {
         $oldRoles = $this->roles;
 
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+        $key = array_search(strtoupper($role), $this->roles, true);
+        if ($key !== false) {
             unset($this->roles[$key]);
             $this->roles = array_values($this->roles);
         }
@@ -66,6 +79,10 @@ class Group extends \FOS\UserBundle\Model\Group implements NotifyPropertyInterfa
         return $this;
     }
 
+    /**
+     * @param string $name
+     * @return \FOS\UserBundle\Model\Group
+     */
     public function setName($name)
     {
         $this->propertyChanged('name', $this->name, $name);
@@ -73,6 +90,10 @@ class Group extends \FOS\UserBundle\Model\Group implements NotifyPropertyInterfa
         return parent::setName($name);
     }
 
+    /**
+     * @param array $roles
+     * @return \FOS\UserBundle\Model\Group
+     */
     public function setRoles(array $roles)
     {
         $oldRoles = $this->roles;
