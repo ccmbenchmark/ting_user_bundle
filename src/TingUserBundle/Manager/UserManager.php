@@ -4,7 +4,7 @@
  * TingUserBundle
  * ==========================================
  *
- * Copyright (C) 2014 CCM Benchmark Group. (http://www.ccmbenchmark.com)
+ * Copyright (C) 2015 CCM Benchmark Group. (http://www.ccmbenchmark.com)
  *
  ***********************************************************************
  *
@@ -25,16 +25,22 @@
 namespace CCMBenchmark\TingUserBundle\Manager;
 
 
-use CCMBenchmark\TingUserBundle\Model\UserRepository;
+use CCMBenchmark\TingUserBundle\Model\User\UserRepository;
 use FOS\UserBundle\Model\UserInterface;
 
 class UserManager extends \FOS\UserBundle\Model\UserManager
 {
     protected $userRepository = null;
+    protected $userClass = '';
 
     public function setUserRepository(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
+    }
+
+    public function setUserClass($userClass)
+    {
+        $this->userClass = $userClass;
     }
 
     /**
