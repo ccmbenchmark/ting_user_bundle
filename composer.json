@@ -1,5 +1,5 @@
 {
-  "name": "ccmbenchmark/ting-user-bundle",
+  "name": "ccmbenchmark/ting_user_bundle",
   "license": "Apache-2.0",
   "type": "library",
   "description": "Integration for friendsofsymfony/user-bundle with ccmbenchmark/ting",
