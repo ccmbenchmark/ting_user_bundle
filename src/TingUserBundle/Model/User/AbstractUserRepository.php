@@ -4,7 +4,7 @@
  * TingUserBundle
  * ==========================================
  *
- * Copyright (C) 2014 CCM Benchmark Group. (http://www.ccmbenchmark.com)
+ * Copyright (C) 2015 CCM Benchmark Group. (http://www.ccmbenchmark.com)
  *
  ***********************************************************************
  *
@@ -22,7 +22,7 @@
  *
  **********************************************************************/
 
-namespace CCMBenchmark\TingUserBundle\Model;
+namespace CCMBenchmark\TingUserBundle\Model\User;
 
 
 use CCMBenchmark\Ting\Repository\Metadata;
@@ -30,8 +30,18 @@ use CCMBenchmark\Ting\Repository\Repository;
 use CCMBenchmark\Ting\Serializer\SerializerFactoryInterface;
 use CCMBenchmark\TingUserBundle\RuntimeException;
 
-abstract class UserRepository extends Repository
+abstract class AbstractUserRepository extends Repository
 {
+    /**
+     * @var string the table name. Override this class to change the value.
+     */
+    protected static $tableName = 'users';
+
+    /**
+     * @var string Your entity. Override this class to change the value.
+     */
+    protected static $entityClass = 'CCMBenchmark\TingUserBundle\Model\User\User';
+
     /**
      * @var null : This value have to be defined in your own class. Valid values are :
      *  - CCMBenchmark\Ting\Driver\Mysqli\Serializer\Bool
@@ -42,25 +52,13 @@ abstract class UserRepository extends Repository
     protected static $booleanSerializer = null;
 
     /**
-     * This method needs to be overriden in the following way:
-     *
-     * public static function initMetadata(SerializerFactoryInterface $serializerFactory, $options = [])
-     * {
-     *      $metadata = parent::initMetadata($serializerFactory, $options);
-     *      $metadata->setConnectionName('myConnectionName');
-     *      $metadata->setDatabase('myDatabase');
-     *      $metadata->setTable('myTableUsers');
-     *      $metadata->setEntity('myEntity');
-     *
-     *      return $metadata;
-     * }
      *
      * @param SerializerFactoryInterface $serializerFactory
      * @param array                      $options
      * @return Metadata
      * @throws \CCMBenchmark\Ting\Exception
      */
-    public static function initMetadata(SerializerFactoryInterface $serializerFactory, $options = [])
+    public static function initMetadata(SerializerFactoryInterface $serializerFactory, array $options = [])
     {
         if (static::$booleanSerializer === null) {
             throw new RuntimeException(
@@ -142,12 +140,12 @@ abstract class UserRepository extends Repository
             'serializer'    => '\CCMBenchmark\Ting\Serializer\DateTime'
         ]);
 
-        /*$metadata->addField([
+        $metadata->addField([
             'fieldName'     => 'groups',
             'columnName'    => 'groups',
             'type'          => 'string',
             'serializer'    => '\CCMBenchmark\Ting\Serializer\Json'
-        ]);*/
+        ]);
 
         $metadata->addField([
             'fieldName'     => 'locked',
@@ -190,6 +188,13 @@ abstract class UserRepository extends Repository
             'type'          => 'datetime',
             'serializer'    => '\CCMBenchmark\Ting\Serializer\DateTime'
         ]);
+
+        $metadata->setTable(static::$tableName);
+
+        $metadata->setEntity(static::$entityClass);
+
+        $metadata->setConnectionName($options['connection']);
+        $metadata->setDatabase($options['database']);
 
         return $metadata;
     }

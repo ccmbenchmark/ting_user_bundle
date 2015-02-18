@@ -22,11 +22,10 @@
  *
  **********************************************************************/
 
+namespace CCMBenchmark\TingUserBundle\Model\User;
 
-namespace CCMBenchmark\TingUserBundle;
 
-
-class RuntimeException extends \RuntimeException
+class MysqlUserRepository extends AbstractUserRepository
 {
-
+    protected static $booleanSerializer = 'CCMBenchmark\Ting\Driver\Mysqli\Serializer\Bool';
 }

@@ -4,7 +4,7 @@
  * TingUserBundle
  * ==========================================
  *
- * Copyright (C) 2014 CCM Benchmark Group. (http://www.ccmbenchmark.com)
+ * Copyright (C) 2015 CCM Benchmark Group. (http://www.ccmbenchmark.com)
  *
  ***********************************************************************
  *
@@ -25,7 +25,46 @@
 namespace CCMBenchmark\TingUserBundle\DependencyInjection;
 
 
-class Configuration
-{
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
+class Configuration implements ConfigurationInterface
+{
+    public function getConfigTreeBuilder()
+    {
+        $treeBuilder = new TreeBuilder();
+        $rootNode = $treeBuilder->root('ccm_benchmark_ting_user');
+
+        $rootNode
+            ->children()
+                ->arrayNode('user')
+                ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('class')->defaultValue('CCMBenchmark\TingUserBundle\Model\User\User')->end()
+                        ->scalarNode('repository')
+                            ->defaultValue('CCMBenchmark\TingUserBundle\Model\User\MysqlUserRepository')
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('group')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('class')->defaultValue('CCMBenchmark\TingUserBundle\Model\Group\Group')->end()
+                        ->scalarNode('repository')
+                            ->defaultValue('CCMBenchmark\TingUserBundle\Model\Group\GroupRepository')
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('options')
+                    ->isRequired()
+                    ->children()
+                        ->scalarNode('connection')->isRequired()->end()
+                        ->scalarNode('database')->isRequired()->end()
+                    ->end()
+                ->end()
+            ->end()
+        ->end();
+
+        return $treeBuilder;
+    }
 }

@@ -4,7 +4,7 @@
  * TingUserBundle
  * ==========================================
  *
- * Copyright (C) 2014 CCM Benchmark Group. (http://www.ccmbenchmark.com)
+ * Copyright (C) 2015 CCM Benchmark Group. (http://www.ccmbenchmark.com)
  *
  ***********************************************************************
  *
@@ -22,12 +22,11 @@
  *
  **********************************************************************/
 
-namespace CCMBenchmark\TingUserBundle\Model;
+namespace CCMBenchmark\TingUserBundle\Model\User;
 
 
 use CCMBenchmark\Ting\Entity\NotifyProperty;
 use CCMBenchmark\Ting\Entity\NotifyPropertyInterface;
-use FOS\UserBundle\Model\GroupInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -35,6 +34,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
 {
     use NotifyProperty;
 
+    /**
+     * @param $id
+     * @return $this
+     */
     public function setId($id)
     {
         $this->propertyChanged('id', $this->id, $id);
@@ -44,6 +47,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return $this;
     }
 
+    /**
+     * @param $salt
+     * @return $this
+     */
     public function setSalt($salt)
     {
         $this->propertyChanged('salt', $this->salt, $salt);
@@ -53,15 +60,36 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return $this;
     }
 
+    /**
+     * @param string $role
+     * @return $this
+     */
     public function removeRole($role)
     {
         $oldRoles = $this->roles;
-        $return = parent::removeRole($role);
+        parent::removeRole($role);
         $this->propertyChanged('roles', $oldRoles, $this->roles);
 
-        return $return;
+        return $this;
     }
 
+    /**
+     * @param string $role
+     * @return $this
+     */
+    public function addRole($role)
+    {
+        $oldRoles = $this->roles;
+        parent::addRole($role);
+        $this->propertyChanged('roles', $oldRoles, $this->roles);
+
+        return $this;
+    }
+
+    /**
+     * @param string $username
+     * @return $this
+     */
     public function setUsername($username)
     {
         $this->propertyChanged('username', $this->username, $username);
@@ -69,6 +97,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setUsername($username);
     }
 
+    /**
+     * @param string $usernameCanonical
+     * @return $this
+     */
     public function setUsernameCanonical($usernameCanonical)
     {
         $this->propertyChanged('usernameCanonical', $this->usernameCanonical, $usernameCanonical);
@@ -100,6 +132,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setCredentialsExpired($boolean);
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail($email)
     {
         $this->propertyChanged('email', $this->email, $email);
@@ -107,6 +143,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setEmail($email);
     }
 
+    /**
+     * @param string $emailCanonical
+     * @return $this
+     */
     public function setEmailCanonical($emailCanonical)
     {
         $this->propertyChanged('emailCanonical', $this->emailCanonical, $emailCanonical);
@@ -114,6 +154,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setEmailCanonical($emailCanonical);
     }
 
+    /**
+     * @param bool $boolean
+     * @return $this
+     */
     public function setEnabled($boolean)
     {
         $this->propertyChanged('enabled', $this->enabled, (boolean)$boolean);
@@ -147,6 +191,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setExpiresAt($date);
     }
 
+    /**
+     * @param string $password
+     * @return $this
+     */
     public function setPassword($password)
     {
         $this->propertyChanged('password', $this->password, $password);
@@ -154,15 +202,23 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setPassword($password);
     }
 
+    /**
+     * @param bool $boolean
+     * @return $this
+     */
     public function setSuperAdmin($boolean)
     {
         $oldRoles = $this->roles;
-        $return = parent::setSuperAdmin($boolean);
+        parent::setSuperAdmin($boolean);
         $this->propertyChanged('roles', $oldRoles, $this->roles);
 
-        return $return;
+        return $this;
     }
 
+    /**
+     * @param \DateTime $time
+     * @return $this
+     */
     public function setLastLogin(\DateTime $time = null)
     {
         $this->propertyChanged('lastLogin', $this->lastLogin, $time);
@@ -170,6 +226,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setLastLogin($time);
     }
 
+    /**
+     * @param bool $boolean
+     * @return $this
+     */
     public function setLocked($boolean)
     {
         $this->propertyChanged('locked', $this->locked, $boolean);
@@ -177,6 +237,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setLocked($boolean);
     }
 
+    /**
+     * @param string $confirmationToken
+     * @return $this
+     */
     public function setConfirmationToken($confirmationToken)
     {
         $this->propertyChanged('confirmationToken', $this->confirmationToken, $confirmationToken);
@@ -184,6 +248,10 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setConfirmationToken($confirmationToken);
     }
 
+    /**
+     * @param \DateTime $date
+     * @return $this
+     */
     public function setPasswordRequestedAt(\DateTime $date = null)
     {
         $this->propertyChanged('passwordRequestedAt', $this->passwordRequestedAt, $date);
@@ -191,40 +259,75 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         return parent::setPasswordRequestedAt($date);
     }
 
+    /**
+     * @param array $roles
+     * @return $this
+     */
     public function setRoles(array $roles)
     {
         $oldRoles = $this->roles;
-        $return = parent::setRoles($roles);
+        parent::setRoles($roles);
         $this->propertyChanged('roles', $oldRoles, $this->roles);
 
-        return $return;
+        return $this;
     }
 
+    /**
+     * @param array $groups
+     * @return $this
+     */
+    public function setGroups(array $groups)
+    {
+        $oldGroups = $this->groups;
+        $this->groups = $groups;
+        $this->propertyChanged('groups', $oldGroups, $this->groups);
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
     public function getEnabled()
     {
         return $this->enabled;
     }
 
+    /**
+     * @return bool
+     */
     public function getLocked()
     {
         return $this->locked;
     }
 
+    /**
+     * @return bool
+     */
     public function getExpired()
     {
         return $this->expired;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getExpiresAt()
     {
         return $this->expiresAt;
     }
 
+    /**
+     * @return bool
+     */
     public function getCredentialsExpired()
     {
         return $this->credentialsExpired;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getCredentialsExpireAt()
     {
         return $this->credentialsExpireAt;
@@ -250,10 +353,13 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
     {
         if ($user instanceof User) {
             // Check that the roles are the same, in any order
-            $isEqual = count($this->getRoles()) == count($user->getRoles());
-            if ($isEqual) {
+            $isEqual = false;
+            if (count($this->getRoles()) === count($user->getRoles())) {
+                $isEqual = true;
                 foreach ($this->getRoles() as $role) {
-                    $isEqual = $isEqual && in_array($role, $user->getRoles());
+                    if (in_array($role, $user->getRoles()) === false) {
+                        return false;
+                    }
                 }
             }
             return $isEqual;

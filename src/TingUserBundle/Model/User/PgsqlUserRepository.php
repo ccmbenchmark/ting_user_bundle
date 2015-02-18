@@ -22,11 +22,10 @@
  *
  **********************************************************************/
 
+namespace CCMBenchmark\TingUserBundle\Model\User;
 
-namespace CCMBenchmark\TingUserBundle;
 
-
-class RuntimeException extends \RuntimeException
+class PgsqlUserRepository extends AbstractUserRepository
 {
-
+    protected static $booleanSerializer = 'CCMBenchmark\Ting\Driver\Pgsql\Serializer\Bool';
 }

@@ -4,7 +4,7 @@
  * TingUserBundle
  * ==========================================
  *
- * Copyright (C) 2014 CCM Benchmark Group. (http://www.ccmbenchmark.com)
+ * Copyright (C) 2015 CCM Benchmark Group. (http://www.ccmbenchmark.com)
  *
  ***********************************************************************
  *
