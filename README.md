@@ -5,7 +5,6 @@ This bundle is an integration for Ting PHP Datamapper with Ting.
 1. Installation
 ===============
 
- * ```composer require friendsofsymfony/user-bundle```
  * ```composer require ccmbenchmark/ting_user_bundle```
  * Add these 2 lines into your AppKernel:
 
