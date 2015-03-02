@@ -1,3 +1,6 @@
+1.0.x-DEV (2015-02-26):
+	* Field `roles` for table `groups` is converted into associative arrays when unserialized.
+	* Fields `roles` and `groups` for table `users` is converted into associative arrays when unserialized.
 1.0.0 (2015-02-18) :
     * Initialisation of the project.
     * You can manage users and groups through this bundle.
