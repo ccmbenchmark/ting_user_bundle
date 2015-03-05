@@ -70,7 +70,15 @@ class GroupRepository extends Repository
             'fieldName'     => 'roles',
             'columnName'    => 'roles',
             'type'          => 'string',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\Json'
+            'serializer'    => '\CCMBenchmark\Ting\Serializer\Json',
+            'serializer_options' => array(
+                'serialize' => array(
+                    'options' => JSON_UNESCAPED_UNICODE
+                ),
+                'unserialize' => array(
+                    'assoc' => true
+                )
+            )
         ]);
 
         $metadata->setTable(static::$tableName);

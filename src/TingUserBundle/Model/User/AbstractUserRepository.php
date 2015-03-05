@@ -144,7 +144,15 @@ abstract class AbstractUserRepository extends Repository
             'fieldName'     => 'groups',
             'columnName'    => 'groups',
             'type'          => 'string',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\Json'
+            'serializer'    => '\CCMBenchmark\Ting\Serializer\Json',
+            'serializer_options' => array(
+                'serialize' => array(
+                    'options' => JSON_UNESCAPED_UNICODE
+                ),
+                'unserialize' => array(
+                    'assoc' => true
+                )
+            )
         ]);
 
         $metadata->addField([
@@ -172,7 +180,15 @@ abstract class AbstractUserRepository extends Repository
             'fieldName'     => 'roles',
             'columnName'    => 'roles',
             'type'          => 'string',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\Json'
+            'serializer'    => '\CCMBenchmark\Ting\Serializer\Json',
+            'serializer_options' => array(
+                'serialize' => array(
+                    'options' => JSON_UNESCAPED_UNICODE
+                ),
+                'unserialize' => array(
+                    'assoc' => true
+                )
+            )
         ]);
 
         $metadata->addField([
