@@ -8,9 +8,19 @@
       "CCMBenchmark\\TingUserBundle\\": "src/TingUserBundle/"
     }
   },
+  "repositories": [
+    {
+      "type" : "composer",
+      "url": "http://satis.admin2.ccmbg.com"
+    }
+
+  ],
+  "require-dev" : {
+      "atoum/atoum" : "~2.0"
+  },
   "require": {
     "php": ">=5.5.0",
     "friendsofsymfony/user-bundle": "dev-master",
-    "ccmbenchmark/ting": "~2.1"
+    "ccmbenchmark/ting": "~3.0"
   }
 }

@@ -25,7 +25,9 @@
 namespace CCMBenchmark\TingUserBundle\Model\User;
 
 
+use CCMBenchmark\Ting\Driver\Pgsql\Serializer\Boolean;
+
 class PgsqlUserRepository extends AbstractUserRepository
 {
-    protected static $booleanSerializer = 'CCMBenchmark\Ting\Driver\Pgsql\Serializer\Bool';
+    protected static $booleanSerializer = Boolean::class;
 }
