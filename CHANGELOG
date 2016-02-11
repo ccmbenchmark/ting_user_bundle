@@ -1,4 +1,4 @@
-1.2.0 (2016-02-11):
+1.1.0 (2016-02-11):
 	* Using Ting 3
 1.0.1 (2015-03-05):
 	* Field `roles` for table `groups` is converted into associative arrays when unserialized.
