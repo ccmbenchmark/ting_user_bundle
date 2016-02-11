@@ -26,10 +26,12 @@ namespace CCMBenchmark\TingUserBundle\Model\Group;
 
 
 use CCMBenchmark\Ting\Repository\Metadata;
+use CCMBenchmark\Ting\Repository\MetadataInitializer;
 use CCMBenchmark\Ting\Repository\Repository;
+use CCMBenchmark\Ting\Serializer\Json;
 use CCMBenchmark\Ting\Serializer\SerializerFactoryInterface;
 
-class GroupRepository extends Repository
+class GroupRepository extends Repository implements MetadataInitializer
 {
     /**
      * @var string the table name. Override this class to change the value.
@@ -70,7 +72,7 @@ class GroupRepository extends Repository
             'fieldName'     => 'roles',
             'columnName'    => 'roles',
             'type'          => 'string',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\Json',
+            'serializer'    => Json::class,
             'serializer_options' => array(
                 'serialize' => array(
                     'options' => JSON_UNESCAPED_UNICODE

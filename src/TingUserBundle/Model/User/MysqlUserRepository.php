@@ -25,7 +25,9 @@
 namespace CCMBenchmark\TingUserBundle\Model\User;
 
 
+use CCMBenchmark\Ting\Driver\Mysqli\Serializer\Boolean;
+
 class MysqlUserRepository extends AbstractUserRepository
 {
-    protected static $booleanSerializer = 'CCMBenchmark\Ting\Driver\Mysqli\Serializer\Bool';
+    protected static $booleanSerializer = Boolean::class;
 }

@@ -26,11 +26,14 @@ namespace CCMBenchmark\TingUserBundle\Model\User;
 
 
 use CCMBenchmark\Ting\Repository\Metadata;
+use CCMBenchmark\Ting\Repository\MetadataInitializer;
 use CCMBenchmark\Ting\Repository\Repository;
+use CCMBenchmark\Ting\Serializer\DateTime;
+use CCMBenchmark\Ting\Serializer\Json;
 use CCMBenchmark\Ting\Serializer\SerializerFactoryInterface;
 use CCMBenchmark\TingUserBundle\RuntimeException;
 
-abstract class AbstractUserRepository extends Repository
+abstract class AbstractUserRepository extends Repository implements MetadataInitializer
 {
     /**
      * @var string the table name. Override this class to change the value.
@@ -44,8 +47,8 @@ abstract class AbstractUserRepository extends Repository
 
     /**
      * @var null : This value have to be defined in your own class. Valid values are :
-     *  - CCMBenchmark\Ting\Driver\Mysqli\Serializer\Bool
-     *  - CCMBenchmark\Ting\Driver\Pgsql\Serializer\Bool
+     *  - CCMBenchmark\Ting\Driver\Mysqli\Serializer\Boolean
+     *  - CCMBenchmark\Ting\Driver\Pgsql\Serializer\Boolean
      *  - or any other class implementing CCMBenchmark\Ting\Serializer\SerializerInterface
      *      and managing boolean correctly
      */
@@ -124,7 +127,7 @@ abstract class AbstractUserRepository extends Repository
             'fieldName'     => 'lastLogin',
             'columnName'    => 'last_login',
             'type'          => 'datetime',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\DateTime'
+            'serializer'    => DateTime::class
         ]);
 
         $metadata->addField([
@@ -137,14 +140,14 @@ abstract class AbstractUserRepository extends Repository
             'fieldName'     => 'passwordRequestedAt',
             'columnName'    => 'password_requested_at',
             'type'          => 'datetime',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\DateTime'
+            'serializer'    => DateTime::class
         ]);
 
         $metadata->addField([
             'fieldName'     => 'groups',
             'columnName'    => 'groups',
             'type'          => 'string',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\Json',
+            'serializer'    => Json::class,
             'serializer_options' => array(
                 'serialize' => array(
                     'options' => JSON_UNESCAPED_UNICODE
@@ -173,14 +176,14 @@ abstract class AbstractUserRepository extends Repository
             'fieldName'     => 'expiresAt',
             'columnName'    => 'expires_at',
             'type'          => 'datetime',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\DateTime'
+            'serializer'    => DateTime::class
         ]);
 
         $metadata->addField([
             'fieldName'     => 'roles',
             'columnName'    => 'roles',
             'type'          => 'string',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\Json',
+            'serializer'    => Json::class,
             'serializer_options' => array(
                 'serialize' => array(
                     'options' => JSON_UNESCAPED_UNICODE
@@ -202,7 +205,7 @@ abstract class AbstractUserRepository extends Repository
             'fieldName'     => 'credentialsExpireAt',
             'columnName'    => 'credentials_expire_at',
             'type'          => 'datetime',
-            'serializer'    => '\CCMBenchmark\Ting\Serializer\DateTime'
+            'serializer'    => DateTime::class
         ]);
 
         $metadata->setTable(static::$tableName);
