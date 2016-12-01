@@ -15,9 +15,8 @@
         </service>
 
         <service id="ccmbenchmark_tinguserbundle.user_manager" class="CCMBenchmark\TingUserBundle\Manager\UserManager">
-            <argument type="service" id="security.encoder_factory" />
-            <argument type="service" id="fos_user.util.username_canonicalizer" />
-            <argument type="service" id="fos_user.util.email_canonicalizer" />
+            <argument type="service" id="fos_user.util.password_updater" />
+            <argument type="service" id="fos_user.util.canonical_fields_updater" />
             <call method="setUserRepository">
                 <argument type="service" id="ccmbenchmark_tinguserbundle.user_repository" />
             </call>
