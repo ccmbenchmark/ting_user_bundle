@@ -159,27 +159,6 @@ abstract class AbstractUserRepository extends Repository implements MetadataInit
         ]);
 
         $metadata->addField([
-            'fieldName'     => 'locked',
-            'columnName'    => 'locked',
-            'type'          => 'boolean',
-            'serializer'    => static::$booleanSerializer
-        ]);
-
-        $metadata->addField([
-            'fieldName'     => 'expired',
-            'columnName'    => 'expired',
-            'type'          => 'boolean',
-            'serializer'    => static::$booleanSerializer
-        ]);
-
-        $metadata->addField([
-            'fieldName'     => 'expiresAt',
-            'columnName'    => 'expires_at',
-            'type'          => 'datetime',
-            'serializer'    => DateTime::class
-        ]);
-
-        $metadata->addField([
             'fieldName'     => 'roles',
             'columnName'    => 'roles',
             'type'          => 'string',
@@ -192,20 +171,6 @@ abstract class AbstractUserRepository extends Repository implements MetadataInit
                     'assoc' => true
                 )
             )
-        ]);
-
-        $metadata->addField([
-            'fieldName'     => 'credentialsExpired',
-            'columnName'    => 'credentials_expired',
-            'type'          => 'boolean',
-            'serializer'    => static::$booleanSerializer
-        ]);
-
-        $metadata->addField([
-            'fieldName'     => 'credentialsExpireAt',
-            'columnName'    => 'credentials_expire_at',
-            'type'          => 'datetime',
-            'serializer'    => DateTime::class
         ]);
 
         $metadata->setTable(static::$tableName);
