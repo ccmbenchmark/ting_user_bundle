@@ -109,30 +109,6 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
     }
 
     /**
-     * @param \DateTime $date
-     *
-     * @return User
-     */
-    public function setCredentialsExpireAt(\DateTime $date = null)
-    {
-        $this->propertyChanged('credentialsExpireAt', $this->credentialsExpireAt, $date);
-
-        return parent::setCredentialsExpireAt($date);
-    }
-
-    /**
-     * @param boolean $boolean
-     *
-     * @return User
-     */
-    public function setCredentialsExpired($boolean)
-    {
-        $this->propertyChanged('credentialsExpired', $this->credentialsExpired, $boolean);
-
-        return parent::setCredentialsExpired($boolean);
-    }
-
-    /**
      * @param string $email
      * @return $this
      */
@@ -163,32 +139,6 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         $this->propertyChanged('enabled', $this->enabled, (boolean)$boolean);
 
         return parent::setEnabled($boolean);
-    }
-
-    /**
-     * Sets this user to expired.
-     *
-     * @param Boolean $boolean
-     *
-     * @return User
-     */
-    public function setExpired($boolean)
-    {
-        $this->propertyChanged('expired', $this->expired, (boolean)$boolean);
-
-        return parent::setExpired($boolean);
-    }
-
-    /**
-     * @param \DateTime $date
-     *
-     * @return User
-     */
-    public function setExpiresAt(\DateTime $date = null)
-    {
-        $this->propertyChanged('expiresAt', $this->expiresAt, $date);
-
-        return parent::setExpiresAt($date);
     }
 
     /**
@@ -224,17 +174,6 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
         $this->propertyChanged('lastLogin', $this->lastLogin, $time);
 
         return parent::setLastLogin($time);
-    }
-
-    /**
-     * @param bool $boolean
-     * @return $this
-     */
-    public function setLocked($boolean)
-    {
-        $this->propertyChanged('locked', $this->locked, $boolean);
-
-        return parent::setLocked($boolean);
     }
 
     /**
@@ -291,46 +230,6 @@ class User extends \FOS\UserBundle\Model\User implements NotifyPropertyInterface
     public function getEnabled()
     {
         return $this->enabled;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getLocked()
-    {
-        return $this->locked;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getExpired()
-    {
-        return $this->expired;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getExpiresAt()
-    {
-        return $this->expiresAt;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getCredentialsExpired()
-    {
-        return $this->credentialsExpired;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCredentialsExpireAt()
-    {
-        return $this->credentialsExpireAt;
     }
 
     /**
