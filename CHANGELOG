@@ -1,5 +1,8 @@
 x.x.x (xxxx-xx-xx):
-    *
+    * Compatibility with latest version of fosuserbundle (and SF3.2)
+    * See https://github.com/FriendsOfSymfony/FOSUserBundle/issues/2224 for compatibility issue between fosuserbundle and SF3.2
+    * See https://github.com/FriendsOfSymfony/FOSUserBundle/issues/2280 for compatibility issue between fosuserbundle and ting_user_bundle
+    * Compatibility with fosuserbundle v2.0.0-beta1 or greater
 1.1.0 (2016-02-11):
 	* Using Ting 3
 1.0.1 (2015-03-05):
