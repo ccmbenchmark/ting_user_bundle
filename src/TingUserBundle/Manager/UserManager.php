@@ -107,7 +107,6 @@ class UserManager extends \FOS\UserBundle\Model\UserManager
         $user->setPassword($newUser->getPassword());
         $user->setConfirmationToken($newUser->getConfirmationToken());
         $user->setEnabled($newUser->isEnabled());
-        $user->setLocked(!$newUser->isAccountNonLocked());
         $user->setSuperAdmin($newUser->isSuperAdmin());
     }
 
