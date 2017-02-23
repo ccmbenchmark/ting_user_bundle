@@ -20,7 +20,7 @@
   },
   "require": {
     "php": ">=5.5.0",
-    "friendsofsymfony/user-bundle": "v2.0.0-beta1",
+    "friendsofsymfony/user-bundle": "2.0.x-dev",
     "ccmbenchmark/ting": "~3.0"
   }
 }
